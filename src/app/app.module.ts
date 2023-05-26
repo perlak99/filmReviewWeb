@@ -3,18 +3,18 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FilmSearchComponent } from './film-search/film-search.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FilmSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MatTabsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
