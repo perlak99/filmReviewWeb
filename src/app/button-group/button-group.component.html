@@ -1,0 +1,7 @@
+<div class="d-inline-flex align-items-center flex-column">
+    <label class="form-label">{{ label }}</label>
+    <div class="btn-group" role="group" attr.aria-label="{{ label }}">
+      <button type="button" class="btn btn-outline-primary" *ngFor="let value of values" [ngClass]="{ 'btn-outline-primary': value !== selectedValue, 'btn-primary': value === selectedValue }"
+        (click)="setValue(value)">{{ value }}</button>
+    </div>
+</div>
