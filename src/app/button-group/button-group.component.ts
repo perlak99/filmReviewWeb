@@ -9,11 +9,16 @@ export class ButtonGroupComponent implements OnInit {
   @Input() label: string = "";
   @Input() values: any[] = [];
   @Input() selectedValue: any = undefined;
+  @Input() defaultValue: any = undefined;
   @Output() valueChange = new EventEmitter<number>();
 
   constructor() { }
 
   ngOnInit(): void {
+    if (this.defaultValue) {
+      this.selectedValue = this.defaultValue;
+      this.valueChange.emit(this.selectedValue);
+    }
   }
 
   setValue(selectedValue: number) {

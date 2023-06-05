@@ -240,6 +240,7 @@ export class FilmService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiFilmGetFilmsGet$Plain$Response(params?: {
+    SearchPhrase?: string;
     ReleaseYearFrom?: number;
     ReleaseYearTo?: number;
     DirectorId?: number;
@@ -254,6 +255,7 @@ export class FilmService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, FilmService.ApiFilmGetFilmsGetPath, 'get');
     if (params) {
+      rb.query('SearchPhrase', params.SearchPhrase, {});
       rb.query('ReleaseYearFrom', params.ReleaseYearFrom, {});
       rb.query('ReleaseYearTo', params.ReleaseYearTo, {});
       rb.query('DirectorId', params.DirectorId, {});
@@ -282,6 +284,7 @@ export class FilmService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiFilmGetFilmsGet$Plain(params?: {
+    SearchPhrase?: string;
     ReleaseYearFrom?: number;
     ReleaseYearTo?: number;
     DirectorId?: number;
@@ -306,6 +309,7 @@ export class FilmService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiFilmGetFilmsGet$Json$Response(params?: {
+    SearchPhrase?: string;
     ReleaseYearFrom?: number;
     ReleaseYearTo?: number;
     DirectorId?: number;
@@ -320,6 +324,7 @@ export class FilmService extends BaseService {
 
     const rb = new RequestBuilder(this.rootUrl, FilmService.ApiFilmGetFilmsGetPath, 'get');
     if (params) {
+      rb.query('SearchPhrase', params.SearchPhrase, {});
       rb.query('ReleaseYearFrom', params.ReleaseYearFrom, {});
       rb.query('ReleaseYearTo', params.ReleaseYearTo, {});
       rb.query('DirectorId', params.DirectorId, {});
@@ -348,6 +353,7 @@ export class FilmService extends BaseService {
    * This method doesn't expect any request body.
    */
   apiFilmGetFilmsGet$Json(params?: {
+    SearchPhrase?: string;
     ReleaseYearFrom?: number;
     ReleaseYearTo?: number;
     DirectorId?: number;

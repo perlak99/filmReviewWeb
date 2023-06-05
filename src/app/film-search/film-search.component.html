@@ -9,7 +9,7 @@
       <div class="col-md-6">
         <div class="mb-1">
           <label for="searchPhrase" class="form-label">Search Phrase</label>
-          <input type="text" class="form-control form-control-sm" id="searchPhrase" formControlName="searchPhrase">
+          <input type="text" class="form-control form-control-sm" id="searchPhrase" formControlName="SearchPhrase">
         </div>
       </div>
     </div>
@@ -18,37 +18,39 @@
         <div class="col-6 col-md-3 col-lg-2">
           <div class="mb-1">
             <label for="releaseYearFrom" class="form-label">Release Year From</label>
-            <input type="number" class="form-control form-control-sm" id="releaseYearFrom" formControlName="releaseYearFrom">
+            <input type="number" class="form-control form-control-sm" id="releaseYearFrom" formControlName="ReleaseYearFrom">
           </div>
         </div>
         <div class="col-6 col-md-3 col-lg-2">
             <div class="mb-1">
               <label for="releaseYearTo" class="form-label">Release Year To</label>
-              <input type="number" class="form-control form-control-sm" id="releaseYearTo" formControlName="releaseYearTo">
+              <input type="number" class="form-control form-control-sm" id="releaseYearTo" formControlName="ReleaseYearTo">
             </div>
           </div>
           <div class="col-6 col-md-2">
             <div class="mb-1">
-              <label for="directorId" class="form-label">Director</label>
-              <select class="form-control form-control-sm" id="directorId" formControlName="directorId">
-                <option *ngFor="let director of directors" [value]="director.id">{{ director.name }}</option>
-              </select>
+              <label for="genreDataList" class="form-label">Genre</label>
+              <input formControlName="Genre" class="form-control form-control-sm" list="genreDatalistOptions" id="genreDataList" placeholder="Type to search...">
+              <datalist id="genreDatalistOptions">
+                <option *ngFor="let genre of genres" value="{{genre.name}}">
+              </datalist>
             </div>
           </div>
           <div class="col-6 col-md-2">
             <div class="mb-1">
-              <label for="genreId" class="form-label">Genre</label>
-              <select class="form-control form-control-sm" id="genreId" formControlName="genreId">
-                <option *ngFor="let genre of genres" [value]="genre.id">{{ genre.name }}</option>
-              </select>
+              <label for="directorDataList" class="form-label">Director</label>
+              <input formControlName="Director" class="form-control form-control-sm" list="directorDatalistOptions" id="directorDataList" placeholder="Type to search...">
+              <datalist id="directorDatalistOptions">
+                <option *ngFor="let director of directors" value="{{director.firstName + ' ' + director.lastName}}">
+              </datalist>
             </div>
           </div>
     </div>
-    <div class="d-flex justify-content-center mb-2">          
+    
+    <div class="d-flex flex-wrap justify-content-center mb-2">          
             <app-button-group class="mx-2" [label]="'Minimum Average Rating'" [values]="ratings"
             (valueChange)="setRating($event)"></app-button-group>
-
-            <app-button-group class="mx-2" [label]="'Page Size'" [values]="pageSizes"
+            <app-button-group class="mx-2" [label]="'Page Size'" [values]="pageSizes" [defaultValue]="10"
             (valueChange)="setPageSize($event)"></app-button-group>
     </div>
     

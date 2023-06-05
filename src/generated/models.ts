@@ -3,6 +3,7 @@ export { AddRatingDto } from './models/add-rating-dto';
 export { AuthenticateDto } from './models/authenticate-dto';
 export { BaseResponse } from './models/base-response';
 export { Genre } from './models/genre';
+export { GenreListDataResponse } from './models/genre-list-data-response';
 export { GetFilmDto } from './models/get-film-dto';
 export { GetFilmDtoDataResponse } from './models/get-film-dto-data-response';
 export { GetFilmListDto } from './models/get-film-list-dto';
@@ -10,6 +11,7 @@ export { GetFilmListDtoListDataResponse } from './models/get-film-list-dto-list-
 export { RegisterDto } from './models/register-dto';
 export { SimpleCommentDto } from './models/simple-comment-dto';
 export { SimpleDirectorDto } from './models/simple-director-dto';
+export { SimpleDirectorDtoListDataResponse } from './models/simple-director-dto-list-data-response';
 export { SimpleUserDto } from './models/simple-user-dto';
 export { StringDataResponse } from './models/string-data-response';
 export { UpdateFilmDto } from './models/update-film-dto';

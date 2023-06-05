@@ -4,7 +4,9 @@ import { NgModule, ModuleWithProviders, SkipSelf, Optional } from '@angular/core
 import { HttpClient } from '@angular/common/http';
 import { ApiConfiguration, ApiConfigurationParams } from './api-configuration';
 
+import { DirectorService } from './services/director.service';
 import { FilmService } from './services/film.service';
+import { GenreService } from './services/genre.service';
 import { RatingService } from './services/rating.service';
 import { UserService } from './services/user.service';
 
@@ -16,7 +18,9 @@ import { UserService } from './services/user.service';
   exports: [],
   declarations: [],
   providers: [
+    DirectorService,
     FilmService,
+    GenreService,
     RatingService,
     UserService,
     ApiConfiguration

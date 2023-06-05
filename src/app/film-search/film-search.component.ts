@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { DirectorService, FilmService, GenreService } from '../../generated/services';
+import { Genre, SimpleDirectorDto } from 'src/generated/models';
 
 @Component({
   selector: 'app-film-search',
@@ -11,44 +13,63 @@ export class FilmSearchComponent implements OnInit {
   filmSearchTitle = "Search film";
 
   filmsFilterForm: FormGroup;
-  directors: any[] = [];
-  genres: any[] = [];
+
   ratings: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   pageSizes: number[] = [10, 20, 30];
+  genres: Genre[] = [];
+  directors: SimpleDirectorDto[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
-    this.filmsFilterForm = this.formBuilder.group({
-      searchPhrase: [''],
-      releaseYearFrom: [],
-      releaseYearTo: [],
-      directorId: [],
-      genreId: [],
-      minAverageRating: [],
-      pageSize: [],
-      page: []
-    });
+  constructor(private formBuilder: FormBuilder,
+    private filmService: FilmService,
+    private directorService: DirectorService,
+    private genreService: GenreService) {
+
   }
 
   ngOnInit() {
-    this.loadDirectors();
-    this.loadGenres();
-  }
+    this.filmsFilterForm = this.formBuilder.group({
+      SearchPhrase: [''],
+      ReleaseYearFrom: [],
+      ReleaseYearTo: [],
+      Director: [],
+      Genre: [],
+      MinAverageRating: [],
+      PageSize: [],
+      Page: [1]
+    });
 
-  loadDirectors() {
-  }
+    this.genreService.apiGenreGetGenresGet$Json().subscribe((res) => {
+      this.genres = res.data;
+    })
 
-  loadGenres() {
+    this.directorService.apiDirectorGetDirectorsGet$Json().subscribe((res) => {
+      this.directors = res.data;
+    })
   }
 
   searchFilms() {
     const formData = this.filmsFilterForm.value;
+    formData.GenreId = this.getGenreId(this.filmsFilterForm.controls['Genre'].value);
+    formData.DirectorId = this.getDirectorId(this.filmsFilterForm.controls['Director'].value);
+    console.log(formData);
+    this.filmService.apiFilmGetFilmsGet$Json(formData).subscribe((res) => {
+      console.log(res);
+    })
+  }
+
+  getGenreId(name: string) {
+    return this.genres.find(genre => genre.name === name)?.id;
+  }
+
+  getDirectorId(name: string) {
+    return this.directors.find(director => `${director.firstName} ${director.lastName}` === name)?.id;
   }
 
   setRating(rating: number) {
-    this.filmsFilterForm.patchValue({ minAverageRating: rating });
+    this.filmsFilterForm.patchValue({ MinAverageRating: rating });
   }
 
   setPageSize(size: number) {
-    this.filmsFilterForm.patchValue({ pageSize: size });
+    this.filmsFilterForm.patchValue({ PageSize: size });
   }
 }

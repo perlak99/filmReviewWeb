@@ -13,7 +13,7 @@ import { ButtonGroupComponent } from './button-group/button-group.component';
   declarations: [
     AppComponent,
     FilmSearchComponent,
-    ButtonGroupComponent
+    ButtonGroupComponent,
   ],
   imports: [
     ApiModule.forRoot({ rootUrl: 'https://localhost:7130' }),
