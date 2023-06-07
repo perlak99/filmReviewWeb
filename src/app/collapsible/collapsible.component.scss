@@ -1,5 +1,8 @@
+@import "node_modules/bootswatch/dist/yeti/_variables.scss";
+
 .arrow {
     transition: transform 0.2s ease-in-out;
+    color: $primary;
 }
 
 .rotate {

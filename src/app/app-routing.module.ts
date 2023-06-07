@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { FilmSearchComponent } from './film-search/film-search.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'film/search', pathMatch: 'full'},
-  {path: 'film/search', component: FilmSearchComponent},
+  {path: '', redirectTo: 'films/search', pathMatch: 'full'},
+  {path: 'films/search', component: FilmSearchComponent},
 ]
 
 @NgModule({
