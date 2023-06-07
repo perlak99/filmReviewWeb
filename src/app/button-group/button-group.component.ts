@@ -10,6 +10,7 @@ export class ButtonGroupComponent implements OnInit {
   @Input() values: any[] = [];
   @Input() selectedValue: any = undefined;
   @Input() defaultValue: any = undefined;
+  @Input() unselectButton: boolean = true;
   @Output() valueChange = new EventEmitter<number>();
 
   constructor() { }
@@ -24,5 +25,10 @@ export class ButtonGroupComponent implements OnInit {
   setValue(selectedValue: number) {
     this.selectedValue = selectedValue;
     this.valueChange.emit(selectedValue);
+  }
+
+  unselectValue() {
+    this.selectedValue = this.defaultValue;
+    this.valueChange.emit(this.selectedValue);
   }
 }

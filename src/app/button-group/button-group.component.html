@@ -3,5 +3,8 @@
     <div class="btn-group" role="group" attr.aria-label="{{ label }}">
       <button type="button" class="btn btn-outline-primary" *ngFor="let value of values" [ngClass]="{ 'btn-outline-primary': value !== selectedValue, 'btn-primary': value === selectedValue }"
         (click)="setValue(value)">{{ value }}</button>
+        <button type="button" class="btn btn-danger" *ngIf="unselectButton" (click)="unselectValue()">
+          X
+        </button>
     </div>
 </div>

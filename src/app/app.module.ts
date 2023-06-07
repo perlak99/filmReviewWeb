@@ -8,12 +8,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiModule } from 'src/generated/api.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonGroupComponent } from './button-group/button-group.component';
+import { CollapsibleComponent } from './collapsible/collapsible.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FilmSearchComponent,
     ButtonGroupComponent,
+    CollapsibleComponent,
   ],
   imports: [
     ApiModule.forRoot({ rootUrl: 'https://localhost:7130' }),

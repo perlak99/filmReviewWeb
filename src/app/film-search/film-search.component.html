@@ -3,8 +3,8 @@
         <h2>{{filmSearchTitle}}</h2>
     </div>
 </div>
-<form [formGroup]="filmsFilterForm" (ngSubmit)="searchFilms()">
-
+<app-collapsible [isFolded]="false">
+  <form [formGroup]="filmsFilterForm" (ngSubmit)="searchFilms()">
     <div class="row justify-content-center">
       <div class="col-md-6">
         <div class="mb-1">
@@ -50,7 +50,7 @@
     <div class="d-flex flex-wrap justify-content-center mb-2">          
             <app-button-group class="mx-2" [label]="'Minimum Average Rating'" [values]="ratings"
             (valueChange)="setRating($event)"></app-button-group>
-            <app-button-group class="mx-2" [label]="'Page Size'" [values]="pageSizes" [defaultValue]="10"
+            <app-button-group class="mx-2" [label]="'Page Size'" [values]="pageSizes" [defaultValue]="10" [unselectButton]="false"
             (valueChange)="setPageSize($event)"></app-button-group>
     </div>
     
@@ -60,3 +60,4 @@
         </div>
     </div>
   </form>
+</app-collapsible>

@@ -10,7 +10,7 @@ import { Genre, SimpleDirectorDto } from 'src/generated/models';
 })
 export class FilmSearchComponent implements OnInit {
 
-  filmSearchTitle = "Search film";
+  filmSearchTitle = "Search films";
 
   filmsFilterForm: FormGroup;
 

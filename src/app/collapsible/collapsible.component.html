@@ -1,0 +1,9 @@
+<div class="card">
+    <div class="card-header" style="display: flex; justify-content: space-between; align-items: center;" [ngClass]="headerStyles" (click)="toggleBody()">
+      <h4 class="card-title mb-0">{{ headerText }}</h4>
+      <i class="bi bi-arrow-down-circle-fill arrow" [ngClass]="{'rotate': !isFolded}"></i>
+    </div>
+    <div class="card-body" style="overflow: hidden" [@foldBody]="isFolded ? 'folded' : 'unfolded'" [ngClass]="bodyStyles" [class.collapsed]="isFolded">
+        <ng-content></ng-content>
+    </div>
+</div>
