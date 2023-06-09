@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { DirectorService, FilmService, GenreService } from '../../generated/services';
-import { Genre, SimpleDirectorDto } from 'src/generated/models';
+import { DirectorService, FilmService, GenreService } from '../../../generated/services';
+import { Genre } from '../../../generated/models/genre';
+import { SimpleDirectorDto } from '../../../generated/models/simple-director-dto';
+import { GetFilmListDto } from 'src/generated/models';
 
 @Component({
   selector: 'app-film-search',
   templateUrl: './film-search.component.html',
   styleUrls: ['./film-search.component.scss']
 })
+
 export class FilmSearchComponent implements OnInit {
 
   filmSearchTitle = "Search films";
@@ -18,6 +21,7 @@ export class FilmSearchComponent implements OnInit {
   pageSizes: number[] = [10, 20, 30];
   genres: Genre[] = [];
   directors: SimpleDirectorDto[] = [];
+  films: GetFilmListDto[];
 
   constructor(private formBuilder: FormBuilder,
     private filmService: FilmService,
@@ -34,35 +38,43 @@ export class FilmSearchComponent implements OnInit {
       Director: [],
       Genre: [],
       MinAverageRating: [],
-      PageSize: [],
+      PageSize: [10],
       Page: [1]
     });
 
     this.genreService.apiGenreGetGenresGet$Json().subscribe((res) => {
-      this.genres = res.data;
+      if (res?.data) {
+        this.genres = res.data;
+      }
     })
 
     this.directorService.apiDirectorGetDirectorsGet$Json().subscribe((res) => {
-      this.directors = res.data;
+      if(res?.data) {
+        this.directors = res.data;
+      }
     })
+
+    this.searchFilms();
   }
 
   searchFilms() {
     const formData = this.filmsFilterForm.value;
     formData.GenreId = this.getGenreId(this.filmsFilterForm.controls['Genre'].value);
     formData.DirectorId = this.getDirectorId(this.filmsFilterForm.controls['Director'].value);
-    console.log(formData);
+
     this.filmService.apiFilmGetFilmsGet$Json(formData).subscribe((res) => {
-      console.log(res);
+      if (res?.statusCode == 200) {
+        this.films = res.data;
+      }
     })
   }
 
   getGenreId(name: string) {
-    return this.genres.find(genre => genre.name === name)?.id;
+    return this.genres?.find(genre => genre.name === name)?.id;
   }
 
   getDirectorId(name: string) {
-    return this.directors.find(director => `${director.firstName} ${director.lastName}` === name)?.id;
+    return this.directors?.find(director => `${director.firstName} ${director.lastName}` === name)?.id;
   }
 
   setRating(rating: number) {
