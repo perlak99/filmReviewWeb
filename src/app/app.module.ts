@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonGroupComponent } from './button-group/button-group.component';
 import { CollapsibleComponent } from './collapsible/collapsible.component';
 import { FilmListComponent } from './films/film-list/film-list.component';
+import { LoginRegisterComponent } from './user/login-register/login-register.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { FilmListComponent } from './films/film-list/film-list.component';
     ButtonGroupComponent,
     CollapsibleComponent,
     FilmListComponent,
+    LoginRegisterComponent,
   ],
   imports: [
     ApiModule.forRoot({ rootUrl: 'https://localhost:7130' }),

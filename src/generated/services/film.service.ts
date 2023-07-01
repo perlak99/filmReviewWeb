@@ -573,4 +573,111 @@ export class FilmService extends BaseService {
     );
   }
 
+  /**
+   * Path part for operation apiFilmChangeFilmStatusPut
+   */
+  static readonly ApiFilmChangeFilmStatusPutPath = '/api/Film/changeFilmStatus';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiFilmChangeFilmStatusPut$Plain()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiFilmChangeFilmStatusPut$Plain$Response(params?: {
+    filmId?: number;
+    statusId?: number;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<BaseResponse>> {
+
+    const rb = new RequestBuilder(this.rootUrl, FilmService.ApiFilmChangeFilmStatusPutPath, 'put');
+    if (params) {
+      rb.query('filmId', params.filmId, {});
+      rb.query('statusId', params.statusId, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'text',
+      accept: 'text/plain',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<BaseResponse>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiFilmChangeFilmStatusPut$Plain$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiFilmChangeFilmStatusPut$Plain(params?: {
+    filmId?: number;
+    statusId?: number;
+  },
+  context?: HttpContext
+
+): Observable<BaseResponse> {
+
+    return this.apiFilmChangeFilmStatusPut$Plain$Response(params,context).pipe(
+      map((r: StrictHttpResponse<BaseResponse>) => r.body as BaseResponse)
+    );
+  }
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `apiFilmChangeFilmStatusPut$Json()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiFilmChangeFilmStatusPut$Json$Response(params?: {
+    filmId?: number;
+    statusId?: number;
+  },
+  context?: HttpContext
+
+): Observable<StrictHttpResponse<BaseResponse>> {
+
+    const rb = new RequestBuilder(this.rootUrl, FilmService.ApiFilmChangeFilmStatusPutPath, 'put');
+    if (params) {
+      rb.query('filmId', params.filmId, {});
+      rb.query('statusId', params.statusId, {});
+    }
+
+    return this.http.request(rb.build({
+      responseType: 'json',
+      accept: 'text/json',
+      context: context
+    })).pipe(
+      filter((r: any) => r instanceof HttpResponse),
+      map((r: HttpResponse<any>) => {
+        return r as StrictHttpResponse<BaseResponse>;
+      })
+    );
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `apiFilmChangeFilmStatusPut$Json$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  apiFilmChangeFilmStatusPut$Json(params?: {
+    filmId?: number;
+    statusId?: number;
+  },
+  context?: HttpContext
+
+): Observable<BaseResponse> {
+
+    return this.apiFilmChangeFilmStatusPut$Json$Response(params,context).pipe(
+      map((r: StrictHttpResponse<BaseResponse>) => r.body as BaseResponse)
+    );
+  }
+
 }

@@ -1,3 +1,5 @@
+export { AddCommentDto } from './models/add-comment-dto';
+export { AddDirectorDto } from './models/add-director-dto';
 export { AddFilmDto } from './models/add-film-dto';
 export { AddRatingDto } from './models/add-rating-dto';
 export { AuthenticateDto } from './models/authenticate-dto';

@@ -6,16 +6,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarColor02">
       <ul class="navbar-nav me-auto">
-        <li class="nav-item" routerLink="['films/search']">
+        <li class="nav-item" routerLink="/films/search">
           <a class="nav-link active" href="#">Films
             <span class="visually-hidden">(current)</span>
           </a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      <div class="d-flex">
+        <a class="nav-link" routerLink="/user/login-register">
+          <i class="bi bi-person-fill"></i>
+        </a>
+      </div>
     </div>
   </div>
 </nav>
