@@ -1,6 +1,9 @@
 @import "node_modules/bootswatch/dist/yeti/_variables.scss";
 
 .bi-person-fill {
-    color: $primary;
+    color: $secondary;
     font-size: 32px;
+    &.active {
+        color: $primary;
+    }
 }

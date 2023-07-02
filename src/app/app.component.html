@@ -14,7 +14,7 @@
       </ul>
       <div class="d-flex">
         <a class="nav-link" routerLink="/user/login-register">
-          <i class="bi bi-person-fill"></i>
+          <i class="bi bi-person-fill" [class.active]="authService.isAuthenticated()"></i>
         </a>
       </div>
     </div>
