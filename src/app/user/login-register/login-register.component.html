@@ -10,6 +10,12 @@
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" formControlName="password" required>
             </div>
+            <div *ngIf="loginSubmitted && (loginForm.controls['username'].hasError('required') || loginForm.controls['password'].hasError('required'))" class="text-danger">
+                Please enter a username and password.
+            </div>
+            <div *ngIf="loginErrorMessage" class="text-danger">
+                {{ loginErrorMessage }}
+            </div>
             <button type="submit" class="btn btn-primary mt-2">Login</button>
         </form>
         
@@ -23,7 +29,15 @@
                 <label for="password">Password</label>
                 <input type="password" class="form-control" id="password" formControlName="password" required>
             </div>
+            <div *ngIf="registerSubmitted && (registerForm.controls['username'].hasError('required') || registerForm.controls['password'].hasError('required'))" class="text-danger">
+                Please enter a username and password.
+            </div>
+            <div *ngIf="registerErrorMessage" class="text-danger">
+                {{ registerErrorMessage }}
+            </div>
             <button type="submit" class="btn btn-primary mt-2">Register</button>
         </form>
     </div>
 </div>
+
+<app-toast #toast></app-toast>

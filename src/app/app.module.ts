@@ -14,6 +14,7 @@ import { LoginRegisterComponent } from './user/login-register/login-register.com
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthService } from './services/auth.service';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { ToastComponent } from './toast/toast.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -27,6 +28,7 @@ export function tokenGetter() {
     CollapsibleComponent,
     FilmListComponent,
     LoginRegisterComponent,
+    ToastComponent,
   ],
   imports: [
     ApiModule.forRoot({ rootUrl: 'https://localhost:7130' }),

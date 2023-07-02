@@ -1,0 +1,29 @@
+@import "node_modules/bootswatch/dist/yeti/_variables.scss";
+
+@keyframes progressAnimation {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
+}
+  
+.progress-bar {
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    background: $primary;
+}
+
+.toast {
+    position: relative;
+    border: 0;
+}
+
+.progress {
+    position: absolute;
+    top: calc(0% - 0.5rem);
+    left: 0;
+    width: 100%;
+    height: 0.5rem;
+}
