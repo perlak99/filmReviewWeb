@@ -4,13 +4,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FilmSearchComponent } from './films/film-search/film-search.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ApiModule } from 'src/generated/api.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonGroupComponent } from './button-group/button-group.component';
 import { CollapsibleComponent } from './collapsible/collapsible.component';
 import { FilmListComponent } from './films/film-list/film-list.component';
 import { LoginRegisterComponent } from './user/login-register/login-register.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AuthService } from './services/auth.service';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -27,9 +34,22 @@ import { LoginRegisterComponent } from './user/login-register/login-register.com
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['https://localhost:7130']
+      }
+    })
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

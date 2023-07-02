@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { AuthenticateDto } from 'src/generated/models';
 import { UserService } from 'src/generated/services';
 
 @Component({
@@ -13,7 +15,8 @@ export class LoginRegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -30,32 +33,24 @@ export class LoginRegisterComponent implements OnInit {
 
   login() {
     if (this.loginForm.valid) {
-      // Get the username and password values from the login form
-      const { username, password } = this.loginForm.value;
+      const request : AuthenticateDto = {username: this.loginForm.get("username").value, password: this.loginForm.get("password").value};
 
-      // Call your login service method passing the username and password
-      this.userService.apiUserAuthenticatePost$Json$Response(username, password).subscribe(response => {
-        // Handle the login response
-        // For example, you can redirect to the home page or display a success message
-      }, error => {
-        // Handle login error
-        // For example, display an error message
+      this.userService.apiUserAuthenticatePost$Json({body: request}).subscribe(response => {
+        this.authService.setToken(response.data)
+      }, response => {
+        console.log(response.error.Message);
       });
     }
   }
 
   register() {
     if (this.registerForm.valid) {
-      // Get the username and password values from the register form
       const { username, password } = this.registerForm.value;
 
-      // Call your register service method passing the username and password
-      this.userService.apiUserRegisterPost$Json$Response(username, password).subscribe(response => {
-        // Handle the register response
-        // For example, you can redirect to the login page or display a success message
+      this.userService.apiUserRegisterPost$Json(username, password).subscribe(response => {
+
       }, error => {
-        // Handle register error
-        // For example, display an error message
+
       });
     }
   }
